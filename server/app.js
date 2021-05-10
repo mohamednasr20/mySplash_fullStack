@@ -5,44 +5,28 @@ const cors = require('cors');
 const Image = require('./models/image');
 const config = require('./utlis/config');
 const logger = require('./utlis/logger');
+const imagesRouter = require('./controlles/images');
 
-mongoose
-  .connect(config.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
-  .then(() => {
+const connectDB = async () => {
+  try {
+    await mongoose.connect(config.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    });
     logger.info('connected to MongoDB');
-  })
-  .catch((error) => {
+  } catch (error) {
     logger.error('error connecting to MongoDB:', error.message);
-  });
+  }
+};
+
+connectDB();
 
 app.use(cors());
 app.use(express.static('build'));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
-
-app.get('/api/images', async (req, res) => {
-  const images = await Image.find({});
-  res.json(images);
-});
-
-app.post('/api/images', async (req, res, next) => {
-  const body = req.body;
-
-  const image = new Image({
-    label: body.label,
-    url: body.url,
-  });
-
-  const savedImage = await image.save();
-  res.json(savedImage);
-});
+app.use('/api/images', imagesRouter);
 
 module.exports = app;
