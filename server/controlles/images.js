@@ -16,7 +16,16 @@ imagesRouter.post('/', async (req, res, next) => {
     });
 
     const savedImage = await image.save();
-    res.json(savedImage);
+    res.status(201).json(savedImage);
+  } catch (error) {
+    next(error);
+  }
+});
+
+imagesRouter.delete('/:id', async (req, res, next) => {
+  try {
+    await Image.findByIdAndDelete(req.params.id);
+    res.status(204).end();
   } catch (error) {
     next(error);
   }
