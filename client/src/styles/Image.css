@@ -1,0 +1,58 @@
+.Image {
+  position: relative;
+  width: 250px;
+  margin: 10px 5px;
+  cursor: pointer;
+}
+
+.Image button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 1px solid red;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background: none;
+  color: red;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.Image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.Image-label {
+  position: absolute;
+  margin: 0 8px;
+  bottom: 10%;
+  color: #ffffff;
+  opacity: 0;
+}
+
+.Image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.Image img,
+.Image button,
+.Image::before {
+  transition: all 0.4s ease-in-out;
+}
+
+.Image:hover .Image-label,
+.Image:hover button {
+  opacity: 1;
+}
+
+.Image:hover::before {
+  background: rgba(0, 0, 0, 0.5);
+}

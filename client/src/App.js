@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react';
 import { GlobalProvider } from './context/GlobalState';
-import ImagesList from './components/ImagesList';
+import ImagesMasonry from './components/ImagesMasonry';
 
 function App() {
   return (
     <GlobalProvider>
-      <ImagesList />
+      <ImagesMasonry />
     </GlobalProvider>
   );
 }
