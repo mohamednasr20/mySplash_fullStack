@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddModal from './AddModal';
+import AddImageModal from './AddImageModal';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -27,7 +27,7 @@ const Header = () => {
         </Button>
       </Navbar.Collapse>
 
-      <AddModal show={show} handleClose={handleClose} />
+      <AddImageModal show={show} handleClose={handleClose} />
     </Navbar>
   );
 };

@@ -2,7 +2,11 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const DeleteModal = ({ showDelModal, handleCloseDelModal }) => {
+const DeleteModal = ({
+  showDelModal,
+  handleCloseDelModal,
+  handelConfirmDelete,
+}) => {
   return (
     <Modal show={showDelModal} onHide={handleCloseDelModal} centered>
       <Modal.Header closeButton>
@@ -13,7 +17,7 @@ const DeleteModal = ({ showDelModal, handleCloseDelModal }) => {
         <Button variant="light" onClick={handleCloseDelModal}>
           Cancel
         </Button>
-        <Button variant="danger" onClick={handleCloseDelModal}>
+        <Button variant="danger" onClick={handelConfirmDelete}>
           Delete
         </Button>
       </Modal.Footer>

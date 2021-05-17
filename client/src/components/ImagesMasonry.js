@@ -4,7 +4,7 @@ import DeleteModal from './DeleteModal';
 import '../styles/ImagesMasonry.css';
 import { GlobalContext } from '../context/GlobalState';
 import Masonry from 'react-masonry-css';
-import axios from 'axios';
+import imagesServices from '../services/images';
 
 const ImagesMasonry = () => {
   const { images, getImages, deleteImage } = useContext(GlobalContext);
@@ -20,13 +20,13 @@ const ImagesMasonry = () => {
   };
 
   const onConfirmDelete = async () => {
-    await axios.delete(`http://localhost:3001/api/images/${id}`);
+    await imagesServices.deleteImage(id);
     deleteImage(id);
     handleCloseDelModal();
   };
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/api/images');
+    const response = await imagesServices.getAll();
     const imgs = response.data;
     getImages(imgs);
   };
@@ -63,7 +63,8 @@ const ImagesMasonry = () => {
         {images.length ? renderImages(images) : <p>loading</p>}
       </Masonry>
       <DeleteModal
-        handleCloseDelModal={onConfirmDelete}
+        handleCloseDelModal={handleCloseDelModal}
+        handelConfirmDelete={onConfirmDelete}
         showDelModal={showDelModal}
       />
     </>

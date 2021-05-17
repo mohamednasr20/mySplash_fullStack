@@ -24,7 +24,7 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const deletImage = (id) => {
+  const deleteImage = (id) => {
     dispatch({
       type: 'DELETEIMAGE',
       payload: id,
@@ -37,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
         images: state.images,
         getImages,
         addImage,
-        deletImage,
+        deleteImage,
       }}
     >
       {children}
