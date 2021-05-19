@@ -9,11 +9,6 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  border: 1px solid red;
-  padding: 10px 20px;
-  border-radius: 15px;
-  background: none;
-  color: red;
   opacity: 0;
   cursor: pointer;
 }

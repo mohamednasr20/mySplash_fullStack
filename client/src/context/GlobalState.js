@@ -3,7 +3,7 @@ import AppReducer from './AppReducer';
 
 const initState = {
   images: [],
-  searchTerm: 'Soccer',
+  searchTerm: '',
 };
 
 export const GlobalContext = createContext(initState);
