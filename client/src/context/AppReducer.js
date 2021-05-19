@@ -18,6 +18,12 @@ const AppReducer = (state, action) => {
         images: state.images.filter((img) => img.id !== action.payload),
       };
 
+    case 'FILTERIMAGES':
+      return {
+        ...state,
+        searchTerm: action.payload,
+      };
+
     default:
       return state;
   }

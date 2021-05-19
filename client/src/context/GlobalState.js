@@ -3,6 +3,7 @@ import AppReducer from './AppReducer';
 
 const initState = {
   images: [],
+  searchTerm: 'Soccer',
 };
 
 export const GlobalContext = createContext(initState);
@@ -31,13 +32,22 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
+  const updateSearchTerm = (term) => {
+    dispatch({
+      type: 'FILTERIMAGES',
+      payload: term,
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         images: state.images,
+        searchTerm: state.searchTerm,
         getImages,
         addImage,
         deleteImage,
+        updateSearchTerm,
       }}
     >
       {children}

@@ -7,7 +7,8 @@ import Masonry from 'react-masonry-css';
 import imagesServices from '../services/images';
 
 const ImagesMasonry = () => {
-  const { images, getImages, deleteImage } = useContext(GlobalContext);
+  const { images, searchTerm, getImages, deleteImage } =
+    useContext(GlobalContext);
   const [showDelModal, setShowDelModal] = useState(false);
   const [id, setId] = useState('');
   const handleCloseDelModal = () => setShowDelModal(false);
@@ -39,6 +40,11 @@ const ImagesMasonry = () => {
   };
 
   const renderImages = (imgs) => {
+    if (searchTerm) {
+      imgs = imgs.filter((img) =>
+        img.label.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+      );
+    }
     return imgs.map((img) => (
       <Image
         key={img.id}

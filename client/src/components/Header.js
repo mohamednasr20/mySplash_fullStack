@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 import AddImageModal from './AddImageModal';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +7,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 const Header = () => {
+  const { searchTerm, updateSearchTerm } = useContext(GlobalContext);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,9 +20,11 @@ const Header = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Form inline className="ml-5">
           <FormControl
+            value={searchTerm}
             type="text"
             placeholder="Search By Name"
             className="mr-sm-2"
+            onChange={(e) => updateSearchTerm(e.target.value)}
           />
         </Form>
         <Button variant="success" className="ml-auto" onClick={handleShow}>
