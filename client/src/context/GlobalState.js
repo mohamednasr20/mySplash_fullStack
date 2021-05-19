@@ -4,6 +4,7 @@ import AppReducer from './AppReducer';
 const initState = {
   images: [],
   searchTerm: '',
+  errorMsg: '',
 };
 
 export const GlobalContext = createContext(initState);
@@ -44,6 +45,7 @@ export const GlobalProvider = ({ children }) => {
       value={{
         images: state.images,
         searchTerm: state.searchTerm,
+        errorMsg: state.errorMsg,
         getImages,
         addImage,
         deleteImage,

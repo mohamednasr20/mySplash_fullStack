@@ -12,11 +12,15 @@ const AddImageModal = ({ show, handleClose }) => {
 
   const handleAddImage = async () => {
     const newImage = { label: newLabel, url: newUrl };
-    const res = await imagesServices.createImage(newImage);
-    addImage(res.data);
-    handleClose();
-    setNewUrl('');
-    setNewLabel('');
+    try {
+      const res = await imagesServices.createImage(newImage);
+      addImage(res.data);
+      handleClose();
+      setNewUrl('');
+      setNewLabel('');
+    } catch (error) {
+      alert(error.response.data.error);
+    }
   };
 
   return (

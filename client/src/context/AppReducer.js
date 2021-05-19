@@ -9,7 +9,7 @@ const AppReducer = (state, action) => {
     case 'ADDIMAGE':
       return {
         ...state,
-        images: [...state.images, action.payload],
+        images: state.images.concat(action.payload),
       };
 
     case 'DELETEIMAGE':
